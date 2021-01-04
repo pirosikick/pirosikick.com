@@ -1,6 +1,11 @@
-import PostPreview from '../components/post-preview'
+import { Post } from '../lib/api'
+import PostPreview from './post-preview'
 
-export default function MoreStories({ posts }) {
+export interface MoreStoriesProps {
+  posts: Array<Pick<Post, 'title' | 'coverImage' | 'date' | 'author' | 'slug' | 'excerpt'>>
+}
+
+export default function MoreStories({ posts }: MoreStoriesProps) {
   return (
     <section>
       <h2 className="mb-8 text-6xl md:text-7xl font-bold tracking-tighter leading-tight">

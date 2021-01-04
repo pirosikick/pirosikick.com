@@ -1,20 +1,27 @@
+import Head from 'next/head'
 import Container from '../components/container'
 import MoreStories from '../components/more-stories'
 import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
 import { getAllPosts } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import { BLOG_TITLE } from '../lib/constants'
 
-export default function Index({ allPosts }) {
+import type { Post } from '../lib/api'
+import type { GetStaticProps } from 'next'
+
+export interface IndexProps {
+  allPosts: Array<Pick<Post, 'title' | 'date' | 'slug' | 'author' | 'coverImage' | 'excerpt'>>
+}
+
+export default function Index({ allPosts }: IndexProps) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
         <Head>
-          <title>Next.js Blog Example with {CMS_NAME}</title>
+          <title>{BLOG_TITLE}</title>
         </Head>
         <Container>
           <Intro />
@@ -35,7 +42,7 @@ export default function Index({ allPosts }) {
   )
 }
 
-export async function getStaticProps() {
+export const getStaticProps: GetStaticProps = async () => {
   const allPosts = getAllPosts([
     'title',
     'date',
@@ -44,8 +51,6 @@ export async function getStaticProps() {
     'coverImage',
     'excerpt',
   ])
-
-  return {
-    props: { allPosts },
-  }
+  const props: IndexProps = { allPosts };
+  return { props }
 }
