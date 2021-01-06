@@ -38,7 +38,7 @@ export default function PostHeader({
           </div>
         )}
         <div className="mb-6 text-lg">
-          <DateFormatter dateString={date} />
+          <DateFormatter timestamp={date} />
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@ if (!fileName) {
 
 const template = `---
 title: ""
-date: ${Date.now()}
+date: ${Math.floor(Date.now() / 1000)}
 excerpt: ""
 
 # coverImage: "/assets/${fileName}/some-image.jpg"
