@@ -1,10 +1,10 @@
-import { parseISO, format } from "date-fns";
+import { format } from "date-fns";
 
 export interface DateFormatterProps {
-  dateString: string;
+  timestamp: number;
 }
 
-export default function DateFormatter({ dateString }: DateFormatterProps) {
-  const date = parseISO(dateString);
-  return <time dateTime={dateString}>{format(date, "yyyy-MM-dd")}</time>;
+export default function DateFormatter({ timestamp }: DateFormatterProps) {
+  const date = new Date(timestamp);
+  return <time dateTime={date.toISOString()}>{format(date, "yyyy-MM-dd")}</time>;
 }

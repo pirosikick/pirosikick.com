@@ -5,7 +5,7 @@ import matter from "gray-matter";
 
 interface FrontMatter {
   title: string;
-  date: string;
+  date: number;
   excerpt: string | null;
   coverImage: string | null;
   author: {
@@ -38,12 +38,16 @@ function assertString(value: unknown, key: string): asserts value is string {
   assert(value, `${key} is required`);
 }
 
+function assertNumber(value: unknown, key: string): asserts value is number {
+  assert(typeof value === "number", `${key} must be a number`);
+  assert(value, `${key} is required`);
+}
+
 function assertFrontMatter(
   data: Record<string, any>
 ): asserts data is FrontMatter {
-  for (const key of ["title", "date"]) {
-    assertString(data[key], key);
-  }
+  assertString(data.title, 'title');
+  assertNumber(data.date, 'date');
 
   for (const key of ["excerpt", "coverImage"]) {
     if (key in data) {
