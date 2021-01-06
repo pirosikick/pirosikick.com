@@ -1,4 +1,4 @@
-import { BLOG_TITLE, CMS_NAME } from '../lib/constants'
+import { BLOG_TITLE, CMS_NAME } from "../lib/constants";
 
 export default function Intro() {
   return (
@@ -17,5 +17,5 @@ export default function Intro() {
         and {CMS_NAME}.
       </h4> */}
     </section>
-  )
+  );
 }

@@ -1,8 +1,10 @@
-import { Post } from '../lib/api'
-import PostPreview from './post-preview'
+import { Post } from "../lib/api";
+import PostPreview from "./post-preview";
 
 export interface MoreStoriesProps {
-  posts: Array<Pick<Post, 'title' | 'coverImage' | 'date' | 'author' | 'slug' | 'excerpt'>>
+  posts: Array<
+    Pick<Post, "title" | "coverImage" | "date" | "author" | "slug" | "excerpt">
+  >;
 }
 
 export default function MoreStories({ posts }: MoreStoriesProps) {
@@ -25,5 +27,5 @@ export default function MoreStories({ posts }: MoreStoriesProps) {
         ))}
       </div>
     </section>
-  )
+  );
 }
