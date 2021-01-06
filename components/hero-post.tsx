@@ -39,7 +39,7 @@ export default function HeroPost({
             </Link>
           </h3>
           <div className="mb-4 md:mb-0 text-lg">
-            <DateFormatter dateString={date} />
+            <DateFormatter timestamp={date} />
           </div>
         </div>
         <div>
