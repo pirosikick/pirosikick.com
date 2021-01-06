@@ -1,8 +1,8 @@
 ---
-title: 'Hello, World'
-excerpt: 'ブログのテストです'
-coverImage: '/assets/blog/hello-world/cover.jpg'
-date: '2021-01-04 23:00:00'
+title: "Hello, World"
+excerpt: "ブログのテストです"
+coverImage: "/assets/blog/hello-world/cover.jpg"
+date: "2021-01-04 23:00:00"
 ---
 
 ブログのテストです。
