@@ -6,5 +6,7 @@ export interface DateFormatterProps {
 
 export default function DateFormatter({ timestamp }: DateFormatterProps) {
   const date = new Date(timestamp * 1000);
-  return <time dateTime={date.toISOString()}>{format(date, "yyyy-MM-dd")}</time>;
+  return (
+    <time dateTime={date.toISOString()}>{format(date, "yyyy-MM-dd")}</time>
+  );
 }
