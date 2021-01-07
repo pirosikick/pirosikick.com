@@ -5,6 +5,7 @@ import Container from "../../components/container";
 import PostBody from "../../components/post-body";
 import Header from "../../components/header";
 import PostHeader from "../../components/post-header";
+import PostFooter from "../../components/post-footer";
 import Layout from "../../components/layout";
 import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
@@ -50,6 +51,7 @@ export default function Post({ post }: PostProps) {
                 author={post.author}
               />
               <PostBody content={post.content} />
+              <PostFooter />
             </article>
           </>
         )}

@@ -1,4 +1,3 @@
-import Footer from "./footer";
 import Meta from "./meta";
 
 import type { ReactNode } from "react";
@@ -14,7 +13,6 @@ export default function Layout({ children }: LayoutProps) {
       <div className="min-h-screen">
         <main>{children}</main>
       </div>
-      <Footer />
     </>
   );
 }
