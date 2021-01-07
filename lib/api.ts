@@ -46,8 +46,8 @@ function assertNumber(value: unknown, key: string): asserts value is number {
 function assertFrontMatter(
   data: Record<string, any>
 ): asserts data is FrontMatter {
-  assertString(data.title, 'title');
-  assertNumber(data.date, 'date');
+  assertString(data.title, "title");
+  assertNumber(data.date, "date");
 
   for (const key of ["excerpt", "coverImage"]) {
     if (key in data) {

@@ -16,3 +16,19 @@
 .markdown h3 {
   @apply text-2xl mt-8 mb-4 leading-snug;
 }
+
+.markdown a {
+  @apply text-blue-500 px-0.5 underline;
+}
+
+.markdown a:hover {
+  @apply text-blue-700 no-underline;
+}
+
+.markdown pre {
+  overflow-x: scroll;
+}
+
+.markdown ul {
+  @apply list-disc pl-6;
+}

@@ -1,0 +1,11 @@
+.postFooter {
+  @apply max-w-2xl mx-auto;
+}
+
+.postFooter a {
+  @apply text-blue-500 underline;
+}
+
+.postFooter a:hover {
+  @apply text-blue-700 no-underline;
+}
