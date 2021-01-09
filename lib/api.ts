@@ -94,8 +94,9 @@ export function getPostBySlug<K extends keyof Post>(
   assertFrontMatter(data);
 
   if (!data.ogImage) {
-    data.ogImage = DEFAULT_OG_IMAGE_URL;
-  } else if (/^https:/.test(data.ogImage)) {
+    data.ogImage = data.coverImage || DEFAULT_OG_IMAGE_URL;
+  }
+  if (!/^https:/.test(data.ogImage)) {
     const url = new URL(BASE_URL);
     url.pathname = data.ogImage;
     data.ogImage = url.toString();
