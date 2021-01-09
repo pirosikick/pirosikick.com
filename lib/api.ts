@@ -1,7 +1,9 @@
 import fs from "fs";
 import assert from "assert";
 import { join } from "path";
+import { URL } from "url";
 import matter from "gray-matter";
+import { BASE_URL, DEFAULT_OG_IMAGE_URL } from "./constants";
 
 interface FrontMatter {
   title: string;
@@ -12,14 +14,13 @@ interface FrontMatter {
     name: string;
     picture: string;
   } | null;
-  ogImage: {
-    url: string;
-  } | null;
+  ogImage: string | null;
 }
 
 export interface Post extends FrontMatter {
   slug: string;
   content: string;
+  ogImage: string;
 }
 
 function isFrontMatterField(field: string): field is keyof FrontMatter {
@@ -62,8 +63,7 @@ function assertFrontMatter(
   }
 
   if (data.ogImage) {
-    assert(typeof data.ogImage === "object", "ogImage must be an object");
-    assertString(data.ogImage.url, "ogImage.url");
+    assertString(data.ogImage, "ogImage");
   }
 }
 
@@ -92,6 +92,14 @@ export function getPostBySlug<K extends keyof Post>(
 
   const { data, content } = matter(fileContents);
   assertFrontMatter(data);
+
+  if (!data.ogImage) {
+    data.ogImage = DEFAULT_OG_IMAGE_URL;
+  } else if (/^https:/.test(data.ogImage)) {
+    const url = new URL(BASE_URL);
+    url.pathname = data.ogImage;
+    data.ogImage = url.toString();
+  }
 
   return fields.reduce((items, field) => {
     if (isFrontMatterField(field)) {

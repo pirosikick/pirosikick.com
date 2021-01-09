@@ -9,7 +9,7 @@ import PostFooter from "../../components/post-footer";
 import Layout from "../../components/layout";
 import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
-import { BLOG_TITLE } from "../../lib/constants";
+import { SITE_NAME } from "../../lib/constants";
 import markdownToHtml from "../../lib/markdownToHtml";
 
 import type { GetStaticPaths, GetStaticProps } from "next";
@@ -18,7 +18,14 @@ import type { Post as PostType } from "../../lib/api";
 export interface PostProps {
   post: Pick<
     PostType,
-    "title" | "date" | "slug" | "author" | "content" | "ogImage" | "coverImage"
+    | "title"
+    | "excerpt"
+    | "date"
+    | "slug"
+    | "author"
+    | "content"
+    | "ogImage"
+    | "coverImage"
   >;
 }
 
@@ -38,11 +45,16 @@ export default function Post({ post }: PostProps) {
             <article className="mb-32">
               <Head>
                 <title>
-                  {post.title} | {BLOG_TITLE}
+                  {post.title} | {SITE_NAME}
                 </title>
-                {post.ogImage && (
-                  <meta property="og:image" content={post.ogImage.url} />
-                )}
+                <meta
+                  property="og:url"
+                  content={`https://pirosikick.com/posts/${post.slug}`}
+                />
+                <meta property="og:type" content="article" />
+                <meta property="og:title" content={post.title} />
+                <meta property="og:description" content={post.excerpt || ""} />
+                <meta property="og:image" content={post.ogImage} />
               </Head>
               <PostHeader
                 title={post.title}
@@ -68,6 +80,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const post = getPostBySlug(params.slug, [
     "title",
     "date",
+    "excerpt",
     "slug",
     "author",
     "content",

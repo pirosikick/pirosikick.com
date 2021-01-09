@@ -14,8 +14,7 @@ date: ${Math.floor(Date.now() / 1000)}
 excerpt: ""
 
 # coverImage: "/assets/${fileName}/some-image.jpg"
-# ogImage:
-#   url: "/assets/${fileName}/some-image.jpg"
+# ogImage: "/assets/${fileName}/some-image.jpg"
 ---
 `;
 

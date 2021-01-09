@@ -1,5 +1,6 @@
 export const EXAMPLE_PATH = "blog-starter";
 export const CMS_NAME = "Markdown";
-export const BLOG_TITLE = "pirosikick.com";
-export const HOME_OG_IMAGE_URL =
-  "https://og-image.now.sh/Next.js%20Blog%20Starter%20Example.png?theme=light&md=1&fontSize=100px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg";
+export const SITE_NAME = "pirosikick.com";
+export const SITE_DESCRIPTION = "Hello! I'm @pirosikick from Fukuoka, Japan.";
+export const BASE_URL = "https://pirosikick.com";
+export const DEFAULT_OG_IMAGE_URL = "https://pirosikick.com/assets/ogp.jpeg";
