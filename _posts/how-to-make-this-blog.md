@@ -14,7 +14,7 @@ pirosikick.comはもともと、Gatsbyで「Hello, World」と表示されるだ
 
 ブログを作ることに時間や手間を掛けすぎてしまいブログを書く元気がなくなりました、というのは避けたかったのでできる限り楽しようと決めていました。ということで、ブログのベースはNext.jsの[blog-starter](https://github.com/vercel/next.js/tree/canary/examples/blog-starter)を使いました。
 
-```console
+```
 # カレントディレクトリにblog-starterを展開
 $ npx create-next-app --example blog-starter .
 
@@ -28,7 +28,7 @@ $ npm run dev
 
 「Next.js TypeScript」でググって1ページに表示された[公式の記事](https://nextjs.org/docs/basic-features/typescript)を参考にしました。空の`tsconfig.json`を作り、TypeScriptをインストール、`npm run dev`でサーバーを起動するとよしなに`tsconfig.json`を作成してくれて非常に楽でした。素晴らしいDX（Developer Experienceの方）だぜ。
 
-```console
+```
 # TypeScript、最低限の型をインストール
 $ npm i -D typescript @types/react @types/node
 
@@ -89,7 +89,7 @@ export function getPostBySlug<K extends keyof Post>(
 
 ESLint、Prettierを導入します。コミット時にフォーマットしてほしいので、lint-staged・huskeyもインストールしセットアップします。ESLintのルールは[サイボウズのやつ](https://github.com/cybozu/eslint-config)がよく整備されているので、それを使わせてもらいます。
 
-```console
+```
 # ESLint & Prettierのインストール
 $ npm i -D eslint @cybozu/eslint-config prettier
 
