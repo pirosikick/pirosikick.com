@@ -5,7 +5,12 @@ import HeroPost from "../components/hero-post";
 import Intro from "../components/intro";
 import Layout from "../components/layout";
 import { getAllPosts } from "../lib/api";
-import { BLOG_TITLE } from "../lib/constants";
+import {
+  BASE_URL,
+  DEFAULT_OG_IMAGE_URL,
+  SITE_DESCRIPTION,
+  SITE_NAME,
+} from "../lib/constants";
 
 import type { Post } from "../lib/api";
 import type { GetStaticProps } from "next";
@@ -23,7 +28,12 @@ export default function Index({ allPosts }: IndexProps) {
     <>
       <Layout>
         <Head>
-          <title>{BLOG_TITLE}</title>
+          <title>{SITE_NAME}</title>
+          <meta property="og:url" content={BASE_URL} />
+          <meta property="og:type" content="website" />
+          <meta property="og:title" content={SITE_NAME} />
+          <meta property="og:description" content={SITE_DESCRIPTION} />
+          <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         </Head>
         <Container>
           <Intro />
