@@ -4,6 +4,7 @@ excerpt: "やっとブログを作ったので、その作り方をざっくり�
 date: 1609937105
 
 # coverImage: "/assets/how-to-make-this-blog/some-image.jpg"
+ogImage: "/assets/posts/how-to-make-this-blog/og.jpeg"
 ---
 
 pirosikick.comはもともと、Gatsbyで「Hello, World」と表示されるだけのページで、いつかブログ作るか〜と思ってからはやN年経ってしまっていました。2021年こそはブログをいっぱい書くぞという気持ちになったので、年末年始の時間を使ってブログを投稿できる環境が整えました。

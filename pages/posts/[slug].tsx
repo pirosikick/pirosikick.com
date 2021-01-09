@@ -55,6 +55,7 @@ export default function Post({ post }: PostProps) {
                 <meta property="og:title" content={post.title} />
                 <meta property="og:description" content={post.excerpt || ""} />
                 <meta property="og:image" content={post.ogImage} />
+                <meta property="twitter:card" content="summary_large_image" />
               </Head>
               <PostHeader
                 title={post.title}
