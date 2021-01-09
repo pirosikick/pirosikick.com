@@ -17,7 +17,11 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve",
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "baseUrl": ".",
+    "paths": {
+      "rehype-shiki": ["types/rehype-shiki.d.ts"]
+    }
   },
   "include": [
     "next-env.d.ts",

@@ -16,8 +16,11 @@
     "next": "latest",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "remark": "13.0.0",
-    "remark-html": "13.0.1"
+    "rehype-shiki": "0.0.9",
+    "rehype-stringify": "^8.0.0",
+    "remark-parse": "^9.0.0",
+    "remark-rehype": "^8.0.0",
+    "unified": "^9.2.0"
   },
   "devDependencies": {
     "@cybozu/eslint-config": "^11.0.3",

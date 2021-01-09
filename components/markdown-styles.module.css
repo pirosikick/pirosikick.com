@@ -1,12 +1,12 @@
 .markdown {
-  @apply text-lg leading-relaxed;
+  @apply text-base leading-relaxed;
 }
 
 .markdown p,
 .markdown ul,
 .markdown ol,
 .markdown blockquote {
-  @apply my-6;
+  @apply my-4;
 }
 
 .markdown h2 {
@@ -25,8 +25,17 @@
   @apply text-blue-700 no-underline;
 }
 
+.markdown code {
+  @apply text-sm px-1 py-1 bg-gray-100 rounded;
+}
+
 .markdown pre {
-  overflow-x: scroll;
+  @apply py-2 px-4 overflow-x-scroll;
+}
+
+.markdown pre > code {
+  color: #ECEFF4;
+  @apply text-sm bg-transparent p-0;
 }
 
 .markdown ul {
