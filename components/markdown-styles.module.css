@@ -41,3 +41,11 @@
 .markdown ul {
   @apply list-disc pl-6;
 }
+
+.markdown ol {
+  @apply list-decimal pl-6;
+}
+
+.markdown p {
+  @apply break-all;
+}
