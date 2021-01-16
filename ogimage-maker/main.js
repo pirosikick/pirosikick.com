@@ -67,13 +67,11 @@ const drawSiteName = (ctx) => {
 const drawTitle = (ctx, title) => {
   const texts = title.split("\n").slice(0, 3);
   const lineCount = texts.length;
-  const fontSize = [125, 100, 75][lineCount - 1];
+  const fontSize = [100, 75, 50][lineCount - 1];
   const lineSpacing = fontSize / 4;
   const height = fontSize * lineCount + lineSpacing * (lineCount - 1);
   console.log(fontSize, height, lineCount);
   const startY = titleRect.y + titleRect.height / 2 - height / 2;
-  // const startY =
-  //   ((HEIGHT - SCREEN_PADDING * 2 - SITE_NAME_FONT_SIZE) / 2 - height) / 2;
 
   ctx.beginPath();
   ctx.fillStyle = "black";
