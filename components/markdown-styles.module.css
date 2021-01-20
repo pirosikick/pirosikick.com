@@ -49,3 +49,17 @@
 .markdown p {
   @apply break-all;
 }
+
+.markdown [data-embedded-media] {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.markdown [data-embedded-media] iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
