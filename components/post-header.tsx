@@ -22,12 +22,12 @@ export default function PostHeader({
         </div>
       )}
       {coverImage && (
-        <div className="mb-8 md:mb-16 sm:mx-0">
+        <div className="max-w-2xl mx-auto mb-8 md:mb-16">
           <CoverImage
             title={title}
             src={coverImage}
-            height={620}
             width={1240}
+            height={620}
           />
         </div>
       )}
