@@ -1,9 +1,7 @@
 import Head from "next/head";
 import Container from "../components/container";
-import MoreStories from "../components/more-stories";
-import HeroPost from "../components/hero-post";
-import Intro from "../components/intro";
 import Layout from "../components/layout";
+import DateFormatter from "../components/date-formatter";
 import { getAllPosts } from "../lib/api";
 import {
   BASE_URL,
@@ -14,6 +12,7 @@ import {
 
 import type { Post } from "../lib/api";
 import type { GetStaticProps } from "next";
+import Link from "next/link";
 
 export interface IndexProps {
   allPosts: Array<
@@ -36,18 +35,26 @@ export default function Index({ allPosts }: IndexProps) {
           <meta property="og:image" content={DEFAULT_OG_IMAGE_URL} />
         </Head>
         <Container>
-          <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
+          <section className="pt-20 mb-20">
+            <h1 className="lg:text-7xl text-4xl font-bold tracking-tighter leading-tight md:leading-none text-center">
+              {SITE_NAME}
+            </h1>
+          </section>
+          <section className="max-w-2xl mx-auto">
+            {morePosts.map((post) => (
+              <div key={`recent-post-${post.slug}`} className="mb-6">
+                <h3 className="text-2xl mb-2 leading-snug">
+                  <Link as={`/posts/${post.slug}`} href="/posts/[slug]">
+                    <a className="underline">{post.title}</a>
+                  </Link>
+                </h3>
+                <div className="text-sm mb-0.5">
+                  <DateFormatter timestamp={post.date} />
+                </div>
+                <p className="text-sm leading-relaxed">{post.excerpt}</p>
+              </div>
+            ))}
+          </section>
         </Container>
       </Layout>
     </>
