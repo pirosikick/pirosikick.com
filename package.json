@@ -10,10 +10,12 @@
     "prettier": "prettier --write styles _posts components *.md"
   },
   "dependencies": {
+    "@remark-embedder/core": "^1.2.4",
     "classnames": "2.2.6",
     "date-fns": "2.16.1",
     "gray-matter": "4.0.2",
     "next": "latest",
+    "node-fetch": "^2.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rehype-shiki": "0.0.9",
@@ -26,6 +28,7 @@
     "@cybozu/eslint-config": "^11.0.3",
     "@types/classnames": "^2.2.11",
     "@types/node": "^14.14.19",
+    "@types/node-fetch": "^2.5.8",
     "@types/react": "^17.0.0",
     "autoprefixer": "10.0.4",
     "eslint": "^7.17.0",

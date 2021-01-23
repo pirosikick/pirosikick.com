@@ -27,13 +27,15 @@ export interface PostProps {
     | "ogImage"
     | "coverImage"
   >;
+  twitter: boolean;
 }
 
-export default function Post({ post }: PostProps) {
+export default function Post({ post, twitter }: PostProps) {
   const router = useRouter();
   if (!router.isFallback && !post?.slug) {
     return <ErrorPage statusCode={404} />;
   }
+
   return (
     <Layout>
       <Container>
@@ -66,6 +68,13 @@ export default function Post({ post }: PostProps) {
               <PostBody content={post.content} />
               <PostFooter />
             </article>
+            {twitter && (
+              <script
+                async
+                defer
+                src="https://platform.twitter.com/widgets.js"
+              />
+            )}
           </>
         )}
       </Container>
@@ -92,13 +101,14 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     return { notFound: true };
   }
 
-  const content = await markdownToHtml(post.content || "");
+  const { html: content, twitter } = await markdownToHtml(post.content || "");
   return {
     props: {
       post: {
         ...post,
         content,
       },
+      twitter,
     },
   };
 };

@@ -49,3 +49,21 @@
 .markdown p {
   @apply break-all;
 }
+
+.markdown [data-embedded-media] {
+  @apply my-4;
+}
+
+.markdown [data-embedded-media=youtube] {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%;
+}
+
+.markdown [data-embedded-media=youtube] iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100% !important;
+  height: 100% !important;
+}
