@@ -1,8 +1,9 @@
 import fs from "fs";
 import assert from "assert";
-import { join } from "path";
+import path from "path";
 import { URL } from "url";
 import matter from "gray-matter";
+import globby from "globby";
 import { BASE_URL, DEFAULT_OG_IMAGE_URL } from "./constants";
 
 interface FrontMatter {
@@ -21,17 +22,6 @@ export interface Post extends FrontMatter {
   slug: string;
   content: string;
   ogImage: string;
-}
-
-function isFrontMatterField(field: string): field is keyof FrontMatter {
-  return [
-    "title",
-    "date",
-    "excerpt",
-    "coverImage",
-    "author",
-    "ogImage",
-  ].includes(field);
 }
 
 function assertString(value: unknown, key: string): asserts value is string {
@@ -67,22 +57,20 @@ function assertFrontMatter(
   }
 }
 
-const postsDirectory = join(process.cwd(), "_posts");
-
-export function getPostSlugs() {
-  return fs.readdirSync(postsDirectory);
+function getPostFiles(): string[] {
+  return globby.sync([path.join(process.cwd(), "_posts/**/*.md")]);
 }
 
-export function getPostBySlug<K extends keyof Post>(
-  slug: string,
-  fields: K[] = []
-): Pick<Post, K> | null {
-  const realSlug = slug.replace(/\.md$/, "");
-  const fullPath = join(postsDirectory, `${realSlug}.md`);
+export function getPostSlugs() {
+  return getPostFiles().map((file) => path.basename(file, ".md"));
+}
+
+function getPost(file: string): Post | null {
+  const slug = path.basename(file, ".md");
 
   let fileContents: string;
   try {
-    fileContents = fs.readFileSync(fullPath, "utf8");
+    fileContents = fs.readFileSync(file, "utf8");
   } catch (err) {
     if (err.code === "ENOENT") {
       return null;
@@ -93,26 +81,54 @@ export function getPostBySlug<K extends keyof Post>(
   const { data, content } = matter(fileContents);
   assertFrontMatter(data);
 
-  if (!data.ogImage) {
-    data.ogImage = data.coverImage || DEFAULT_OG_IMAGE_URL;
-  }
-  if (!/^https:/.test(data.ogImage)) {
-    const url = new URL(BASE_URL);
-    url.pathname = data.ogImage;
-    data.ogImage = url.toString();
+  const ogImage: string = (() => {
+    if (data.ogImage) {
+      if (/^https:/.test(data.ogImage)) {
+        return data.ogImage;
+      }
+      const url = new URL(BASE_URL);
+      url.pathname = data.ogImage;
+      return url.toString();
+    }
+    return data.coverImage || DEFAULT_OG_IMAGE_URL;
+  })();
+
+  return {
+    ...data,
+    ogImage,
+    slug,
+    content,
+  };
+}
+
+function pick<K extends keyof Post>(
+  post: Post,
+  fields: K[] = []
+): Pick<Post, K> {
+  return fields.reduce((items, field) => {
+    const value = typeof post[field] === "undefined" ? null : post[field];
+    return { ...items, [field]: value };
+  }, {} as Pick<Post, K>);
+}
+
+export function getPostBySlug<K extends keyof Post>(
+  slug: string,
+  fields: K[] = []
+): Pick<Post, K> | null {
+  const realSlug = slug.replace(/\.md$/, "");
+  const fullPath = getPostFiles().find(
+    (file) => path.basename(file, ".md") === realSlug
+  );
+  if (!fullPath) {
+    return null;
   }
 
-  return fields.reduce((items, field) => {
-    if (isFrontMatterField(field)) {
-      const value = typeof data[field] === "undefined" ? null : data[field];
-      return { ...items, [field]: value };
-    } else if (field === "slug") {
-      return { ...items, [field]: realSlug };
-    } else if (field === "content") {
-      return { ...items, [field]: content };
-    }
-    return items;
-  }, {} as Pick<Post, K>);
+  const post = getPost(fullPath);
+  if (!post) {
+    return null;
+  }
+
+  return pick(post, fields);
 }
 
 const extractNull = <T>(value: T): value is NonNullable<T> => value !== null;
@@ -120,11 +136,11 @@ const extractNull = <T>(value: T): value is NonNullable<T> => value !== null;
 export function getAllPosts<K extends keyof Post>(
   fields: K[] = []
 ): Array<Pick<Post, K>> {
-  const slugs = getPostSlugs();
   return (
-    slugs
-      .map((slug) => getPostBySlug(slug, fields))
+    getPostFiles()
+      .map((file) => getPost(file))
       .filter(extractNull)
+      .map((post) => pick(post, fields))
       // sort posts by date in descending order
       // @ts-expect-error I have no idea to fix this error
       .sort((post1, post2) => (post1.date > post2.date ? -1 : 1))
