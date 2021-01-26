@@ -2,7 +2,7 @@
 title: "Journalingの方法"
 date: 1611589304
 excerpt: "今年の英語学習はJournalingに取り組んでみようと思ったので、やり方についてざっくりと調べました。"
-ogImage: "/assets/how-to-do-journaling/og.jpeg"
+ogImage: "/assets/posts/how-to-do-journaling/og.jpeg"
 ---
 
 今年の英語学習はJournalingに取り組んでみようと思ったので、やり方についてざっくりと調べました。
