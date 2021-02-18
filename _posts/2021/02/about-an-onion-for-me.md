@@ -2,7 +2,7 @@
 title: "俺得な玉ねぎに関する情報"
 date: 1613653611
 excerpt: "玉ねぎに関するお役立ち情報を2つ紹介します。"
-ogImage: "/assets/posts/about-an-onion-for-me/ogp.jpeg"
+ogImage: "/assets/posts/about-an-onion-for-me/og.jpeg"
 ---
 
 今日は料理ネタです。玉ねぎに関する俺得な情報を2つ公開します。
