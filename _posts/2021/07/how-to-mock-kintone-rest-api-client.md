@@ -4,7 +4,7 @@ date: 1626575888
 excerpt: "@kintone/rest-api-clientをモックして単体テストを書く方法について、書いた"
 
 # coverImage: "/assets/how-to-mock-kintone-rest-api-client/some-image.jpg"
-ogImage: "/assets/how-to-mock-kintone-rest-api-client/og.jpg"
+ogImage: "/assets/posts/how-to-mock-kintone-rest-api-client/og.jpg"
 ---
 
 副業先でkintoneを利用している。kintoneの機能だけでは賄えない部分は、JSカスタマイズを作成し補っている。そのJSカスタマイズを作成するときに`@kintone/rest-api-client`を使うことが多く、単体テスト時はそれをモックしてテストする。今回は備忘録的に`@kintone/rest-api-client`をモックする方法について、書く。
