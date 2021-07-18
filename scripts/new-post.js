@@ -16,7 +16,7 @@ date: ${Math.floor(today.getTime() / 1000)}
 excerpt: ""
 
 # coverImage: "/assets/${fileName}/some-image.jpg"
-# ogImage: "/assets/${fileName}/some-image.jpg"
+# ogImage: "/assets/posts/${fileName}/og.jpg"
 ---
 `;
 
