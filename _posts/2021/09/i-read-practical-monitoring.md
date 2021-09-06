@@ -4,7 +4,7 @@ date: 1630937234
 excerpt: "入門監視を読了したので、印象に残ったことなど、感想を書きます。"
 
 # coverImage: "/assets/i-read-practical-monitoring/some-image.jpg"
-# ogImage: "/assets/posts/i-read-practical-monitoring/og.jpg"
+ogImage: "/assets/posts/i-read-practical-monitoring/og.jpg"
 ---
 
 [O'Reilly Japan - 入門 監視](https://www.oreilly.co.jp/books/9784873118642/)
