@@ -10,7 +10,7 @@ import Layout from "../../components/layout";
 import { getPostBySlug, getAllPosts } from "../../lib/api";
 import PostTitle from "../../components/post-title";
 import { SITE_NAME } from "../../lib/constants";
-import markdownToHtml from "../../lib/markdownToHtml";
+import { markdownToHtml } from "../../lib/markdownToHtml";
 
 import type { GetStaticPaths, GetStaticProps } from "next";
 import type { Post as PostType } from "../../lib/api";

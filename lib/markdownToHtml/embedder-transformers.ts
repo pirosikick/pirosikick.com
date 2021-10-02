@@ -1,17 +1,12 @@
 import assert from "assert";
 import { URL } from "url";
-import unified from "unified";
-import remark2rehype from "remark-rehype";
-import remark from "remark-parse";
-import html from "rehype-stringify";
-import shiki from "rehype-shiki";
-import remarkEmbedder, { Transformer } from "@remark-embedder/core";
+import { Transformer } from "@remark-embedder/core";
 import fetch from "node-fetch";
 
 const wrapEmbededHTML = (name: string, innerHTML: string) =>
   `<div data-embedded-media="${name}">${innerHTML}</div>`;
 
-const YouTubeTransformer: Transformer = {
+export const EmbedderYouTubeTransformer: Transformer = {
   name: "YouTube",
   shouldTransform(url) {
     const { host, pathname, searchParams } = new URL(url);
@@ -41,7 +36,7 @@ const YouTubeTransformer: Transformer = {
   },
 };
 
-const TwitterTransformer: Transformer = {
+export const EmbedderTwitterTransformer: Transformer = {
   name: "Twitter",
   shouldTransform(url) {
     const { host, pathname } = new URL(url);
@@ -61,22 +56,3 @@ const TwitterTransformer: Transformer = {
     return wrapEmbededHTML("twitter", json.html);
   },
 };
-
-export default async function markdownToHtml(
-  markdown: string
-): Promise<{ html: string; twitter: boolean }> {
-  const result = await unified()
-    .use(remark)
-    .use(remarkEmbedder, {
-      transformers: [YouTubeTransformer, TwitterTransformer],
-    })
-    .use(remark2rehype)
-    .use(html)
-    .use(shiki)
-    .process(markdown);
-
-  const resultHTML = result.toString();
-  const twitter = resultHTML.indexOf('data-embedded-media="twitter"') !== -1;
-
-  return { html: resultHTML, twitter };
-}
