@@ -1,5 +1,6 @@
 import { Handlers } from "mdast-util-to-hast";
-import { assertImageWithOptionsNode } from "./asserts";
+import { assertImageNode, assertImageWithOptionsNode } from "./asserts";
+import { getImageSrcset } from "./getImageSrcset";
 import { IMAGE_WITH_OPTIONS_TYPE } from "./unified-plugins";
 
 export const remark2rehypeHandlers: Handlers = {
@@ -23,6 +24,30 @@ export const remark2rehypeHandlers: Handlers = {
           tagName: "img",
           properties: {
             src: node.url,
+            srcset: getImageSrcset(node.url),
+            alt: node.alt,
+            title: node.title,
+          },
+        },
+      ],
+    };
+  },
+  image: (h, node) => {
+    assertImageNode(node);
+
+    return {
+      type: "element",
+      tagName: "div",
+      properties: {
+        className: "image",
+      },
+      children: [
+        {
+          type: "element",
+          tagName: "img",
+          properties: {
+            src: node.url,
+            srcset: getImageSrcset(node.url),
             alt: node.alt,
             title: node.title,
           },
