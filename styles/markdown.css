@@ -67,3 +67,14 @@
   width: 100% !important;
   height: 100% !important;
 }
+
+.markdown .image {
+  @apply my-8;
+
+  display: flex;
+  justify-content: center;
+}
+
+.markdown .image--is-vertical img {
+  max-height: 500px;
+}

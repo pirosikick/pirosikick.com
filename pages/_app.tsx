@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
 import "../styles/index.css";
+import "../styles/markdown.css";
 import { GA_ID, pageview } from "../lib/gtag";
 
 import type { AppProps } from "next/app";
