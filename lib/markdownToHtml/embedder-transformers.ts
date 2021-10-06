@@ -56,3 +56,22 @@ export const EmbedderTwitterTransformer: Transformer = {
     return wrapEmbededHTML("twitter", json.html);
   },
 };
+
+export const EmbedderSpeakerDeckTransformer: Transformer = {
+  name: "SpeakerDeck",
+  shouldTransform(url) {
+    const { host } = new URL(url);
+    return host === "speakerdeck.com";
+  },
+  async getHTML(url) {
+    const requestURL = new URL("https://speakerdeck.com/oembed.json");
+    requestURL.searchParams.append("url", url);
+
+    const response = await fetch(requestURL);
+    const json = await response.json();
+    assert(typeof json === "object" && json !== null);
+    assert(typeof json.html === "string");
+
+    return wrapEmbededHTML("speakerdeck", json.html);
+  },
+};

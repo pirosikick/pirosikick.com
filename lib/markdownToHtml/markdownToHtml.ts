@@ -5,6 +5,7 @@ import html from "rehype-stringify";
 import shiki from "rehype-shiki";
 import remarkEmbedder from "@remark-embedder/core";
 import {
+  EmbedderSpeakerDeckTransformer,
   EmbedderTwitterTransformer,
   EmbedderYouTubeTransformer,
 } from "./embedder-transformers";
@@ -17,7 +18,11 @@ export async function markdownToHtml(
   const result = await unified()
     .use(remark)
     .use(remarkEmbedder, {
-      transformers: [EmbedderYouTubeTransformer, EmbedderTwitterTransformer],
+      transformers: [
+        EmbedderYouTubeTransformer,
+        EmbedderTwitterTransformer,
+        EmbedderSpeakerDeckTransformer,
+      ],
     })
     .use(allowImageOptions)
     .use(remark2rehype, {
