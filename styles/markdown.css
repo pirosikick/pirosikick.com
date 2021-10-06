@@ -30,7 +30,7 @@
 }
 
 .markdown pre {
-  @apply py-2 px-4 overflow-x-scroll;
+  @apply my-8 py-2 px-4 overflow-x-scroll;
 }
 
 .markdown pre > code {
@@ -51,7 +51,7 @@
 }
 
 .markdown [data-embedded-media] {
-  @apply my-4;
+  @apply my-8;
 }
 
 .markdown [data-embedded-media=youtube] {
@@ -65,7 +65,11 @@
   top: 0;
   right: 0;
   width: 100% !important;
-  height: 100% !important;
+  /* height: 100% !important; */
+}
+
+.markdown [data-embedded-media=speakerdeck] iframe {
+  width: 100%;
 }
 
 .markdown .image {
